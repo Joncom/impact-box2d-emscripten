@@ -11,6 +11,7 @@ ig.module(
 ig.Box2DEntity = ig.Entity.extend({
     body: null,
     angle: 0,
+    maxVel: { x: 999999, y: 999999 },
 
     init: function( x, y , settings ) {
         this.parent( x, y, settings );
