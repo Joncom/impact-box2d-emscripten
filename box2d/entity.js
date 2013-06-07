@@ -49,6 +49,23 @@ ig.Box2DEntity = ig.Entity.extend({
         this.pos.y = y / Box2D.b2SCALE - this.size.y / 2;
         this.angle = this.body.GetAngle().round(2);
 
+        /*
+        // This logic should work to detect whether or not
+        // the entity is standing. However, GetManifold()
+        // doesn't seem to return an instance of b2Manifold.
+        // https://github.com/kripken/box2d.js/issues/26
+        this.standing = false;
+        for(var edge = this.body.GetContactList(); edge.ptr !== 0; edge = edge.get_next()) {
+            var contact = edge.get_contact();
+            var manifold = contact.GetManifold();
+            var localNormal = get_localNormal();
+            if( localNormal.get_y() < 0 ) {
+                this.standing = true;
+                break;
+            }
+        }
+        */
+
         if( this.currentAnim ) {
             this.currentAnim.update();
             this.currentAnim.angle = this.angle;
