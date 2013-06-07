@@ -31,6 +31,28 @@ ig.Box2DGame = ig.Game.extend({
         }
 
         this.parent( data );
+
+
+        var listener = new Box2D.b2ContactListener();
+        Box2D.customizeVTable(listener, [{
+            original: Box2D.b2ContactListener.prototype.BeginContact,
+            replacement:
+                function (thsPtr, contactPtr) {
+                    var contact = Box2D.wrapPointer( contactPtr, Box2D.b2Contact );
+                    var entityA = contact.GetFixtureA().GetBody().entity;
+                    var entityB = contact.GetFixtureB().GetBody().entity;
+                    var data = { other: null };
+                    if(entityA) {
+                        data.other = entityB;
+                        entityA.contactBuffer.push(data);
+                    }
+                    if(entityB) {
+                        data.other = entityA;
+                        entityB.contactBuffer.push(data);
+                    }
+                }
+        }]);
+        ig.world.SetContactListener(listener);
     },
 
 
