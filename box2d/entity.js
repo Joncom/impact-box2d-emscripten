@@ -51,6 +51,8 @@ ig.Box2DEntity = ig.Entity.extend({
         this.last.y = this.pos.y;
         this.angle = this.body.GetAngle().round(2);
 
+        this.limitVelocity();
+
         /*
         // This logic should work to detect whether or not
         // the entity is standing. However, GetManifold()
@@ -86,6 +88,19 @@ ig.Box2DEntity = ig.Entity.extend({
             }
         }
         return false;
+    },
+
+    limitVelocity: function() {
+        var velocity = this.body.GetLinearVelocity();
+        var x = velocity.get_x() / Box2D.b2SCALE;
+        var y = velocity.get_y() / Box2D.b2SCALE;
+        if(x < -this.maxVel.x)     x = -this.maxVel.x;
+        else if(x > this.maxVel.x) x = this.maxVel.x;
+        if(y < -this.maxVel.y)     y = -this.maxVel.y;
+        else if(y > this.maxVel.y) y = this.maxVel.y;
+        x *= Box2D.b2SCALE;
+        y *= Box2D.b2SCALE;
+        this.body.SetLinearVelocity( new Box2D.b2Vec2(x, y), this.body.GetPosition() );
     }
 
 });
