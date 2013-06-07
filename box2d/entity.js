@@ -18,6 +18,7 @@ ig.Box2DEntity = ig.Entity.extend({
         // Only create a box2d body when we are not in Weltmeister
         if( !ig.global.wm ) {
             this.createBody();
+            this.body.entity = this;
         }
     },
 
@@ -58,6 +59,7 @@ ig.Box2DEntity = ig.Entity.extend({
         ig.world.DestroyBody( this.body );
         this.parent();
     }
+
 });
 
 });
