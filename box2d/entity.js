@@ -47,6 +47,8 @@ ig.Box2DEntity = ig.Entity.extend({
         var y = pos.get_y();
         this.pos.x = x / Box2D.b2SCALE - this.size.x / 2;
         this.pos.y = y / Box2D.b2SCALE - this.size.y / 2;
+        this.last.x = this.pos.x;
+        this.last.y = this.pos.y;
         this.angle = this.body.GetAngle().round(2);
 
         /*
