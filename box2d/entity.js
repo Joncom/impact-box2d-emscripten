@@ -53,6 +53,7 @@ ig.Box2DEntity = ig.Entity.extend({
         this.angle = this.body.GetAngle().round(2);
 
         this.limitVelocity();
+        this.body.SetGravityScale(this.gravityFactor);
 
         /*
         // This logic should work to detect whether or not
