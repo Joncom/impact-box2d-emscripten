@@ -11,7 +11,7 @@ ig.module('plugins.box2d.lib')
  * Changed "this['Box2D']" to "window['Box2D']" so that Box2D
  * object is globally accessible.
  *
- * Doubled the number of "null" contained by the array called
+ * Quadrupled the number of "null" contained by the array called
  * "functionPointers". This fixed the following error message:
  * "Uncaught Finished up all reserved function pointers. Use a
  * higher value for RESERVED_FUNCTION_POINTERS."
@@ -335,7 +335,7 @@ var Runtime = {
       return Module['dynCall_' + sig].call(null, ptr);
     }
   },
-  functionPointers: [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+  functionPointers: [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
   addFunction: function (func) {
     for (var i = 0; i < Runtime.functionPointers.length; i++) {
       if (!Runtime.functionPointers[i]) {
