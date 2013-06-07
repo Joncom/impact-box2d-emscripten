@@ -16,6 +16,9 @@ ig.Box2DGame = ig.Game.extend({
     worldVelocityIterations: 5,
     worldPositionIterations: 5,
 
+    // Handled by Box2D.
+    checkEntities: function() {},
+
     loadLevel: function( data ) {
 
         // Find the collision layer and create the box2d world from it
