@@ -58,6 +58,15 @@ ig.Box2DEntity = ig.Entity.extend({
     kill: function() {
         ig.world.DestroyBody( this.body );
         this.parent();
+    },
+
+    touches: function( other ) {
+        for(var edge = this.body.GetContactList(); edge.ptr !== 0; edge = edge.get_next()) {
+            if(edge.get_other().entity === other) {
+                return true;
+            }
+        }
+        return false;
     }
 
 });
