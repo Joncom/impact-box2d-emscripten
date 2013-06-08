@@ -102,9 +102,9 @@ ig.Box2DEntity = ig.Entity.extend({
         else if(x > this.maxVel.x) x = this.maxVel.x;
         if(y < -this.maxVel.y)     y = -this.maxVel.y;
         else if(y > this.maxVel.y) y = this.maxVel.y;
-        x *= Box2D.b2SCALE;
-        y *= Box2D.b2SCALE;
-        this.body.SetLinearVelocity( new Box2D.b2Vec2(x, y), this.body.GetPosition() );
+        velocity.set_x(x * Box2D.b2SCALE);
+        velocity.set_y(y * Box2D.b2SCALE);
+        this.body.SetLinearVelocity( velocity, this.body.GetPosition() );
     }
 
 });
