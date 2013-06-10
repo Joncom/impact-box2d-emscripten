@@ -14,7 +14,9 @@ ig.Box2DEntity = ig.Entity.extend({
     angle: 0,
     maxVel: { x: 999999, y: 999999 },
     contactBuffer: [],
+
     isBullet: false,
+    fixedRotation: false,
 
     init: function( x, y , settings ) {
         this.parent( x, y, settings );
@@ -23,6 +25,7 @@ ig.Box2DEntity = ig.Entity.extend({
         if( !ig.global.wm ) {
             this.createBody();
             this.body.entity = this;
+            this.body.SetFixedRotation(this.fixedRotation);
         }
     },
 
