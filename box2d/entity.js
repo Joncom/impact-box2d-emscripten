@@ -14,6 +14,7 @@ ig.Box2DEntity = ig.Entity.extend({
     angle: 0,
     maxVel: { x: 999999, y: 999999 },
     contactBuffer: [],
+    isBullet: false,
 
     init: function( x, y , settings ) {
         this.parent( x, y, settings );
@@ -33,6 +34,7 @@ ig.Box2DEntity = ig.Entity.extend({
         ));
         bodyDef.set_type(Box2D.b2_dynamicBody);
         this.body = ig.world.CreateBody(bodyDef);
+        this.body.SetBullet(this.isBullet);
 
         var shapeDef = new Box2D.b2PolygonShape();
         shapeDef.SetAsBox(
